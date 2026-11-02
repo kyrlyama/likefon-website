@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
+  /* Primary */
   --color-primary-600: #054692;
   --color-primary-500: #0061d2;
   --color-primary-100: #deedff;
-}
 
-@theme hover/active {
-  --color-hover-700: #053369;
-  --color-active-50: #ebf3fd;
-}
+  /* Semantic */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
-@theme neutral {
+  /* Neutral */
   --color-neutral-900: #111827;
   --color-neutral-700: #374151;
   --color-neutral-500: #6b7280;
@@ -19,28 +19,25 @@
   --color-neutral-200: #e5e7eb;
   --color-neutral-100: #f3f4f6;
   --color-neutral-50: #f9fafb;
-}
 
-@theme semantic {
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /*Hover/Active*/
+  --color-primary-700: #053369; /* Hover */
+  --color-primary-50: #ebf3fd; /* Active */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+}
+
+@theme {
+  --text-h1: 1.75rem; /* 28px → class: text-h1 */
+  --text-h2: 1.25rem; /* 20px → class: text-h2 */
+  --text-body: 1rem; /* 16px → class: text-body */
+  --text-caption: 0.75rem; /* 12px → class: text-caption */
+  --text-body--line-height: 1.5rem; /* 24px */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-900);
 }
