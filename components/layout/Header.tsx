@@ -1,19 +1,7 @@
 import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Container } from "@/components/Container";
-
-type NavLink = {
-  href: string;
-  label: string;
-};
-
-const navLinks: NavLink[] = [
-  { href: "/catalog", label: "Catalog" },
-  { href: "/services", label: "Services" },
-  { href: "/promotions", label: "Promotions" },
-  { href: "/brands", label: "Brands" },
-  { href: "/contacts", label: "Contacts" },
-];
+import { Container } from "@/components/layout/Container";
+import { MobileMenu } from "@/components/layout/MobileMenu";
+import { navLinks } from "@/lib/navigation";
 
 export function Header() {
   return (
@@ -36,13 +24,7 @@ export function Header() {
             ))}
           </nav>
 
-          <button
-            type="button"
-            aria-label="Open menu"
-            className="flex size-12 items-center justify-center rounded-full bg-primary-600 text-white lg:hidden"
-          >
-            <Menu />
-          </button>
+          <MobileMenu />
         </div>
       </Container>
     </header>
