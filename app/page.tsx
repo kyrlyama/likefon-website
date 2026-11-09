@@ -2,8 +2,12 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { SearchForm } from "@/components/SearchForm";
 import { CallStoreLink } from "@/components/CallStoreLink";
+import { getActivePromotions } from "@/lib/promotions";
 
-export default function Home() {
+export default async function Home() {
+  // Stage 6+: replace with PromotionCarousel when there are more banners.
+  const [promotion] = await getActivePromotions();
+
   return (
     <Container>
       <h1 className="mt-6 mb-2 text-h1 font-bold text-neutral-900">
@@ -13,17 +17,21 @@ export default function Home() {
         Cases, screen protectors, chargers and repairs in two stores.
       </p>
 
-      {/* Stage 6: replace with PromotionCarousel */}
-      <div className="relative mb-10 aspect-2/1 overflow-hidden rounded-2xl">
-        <Image
-          src="/images/promotions/screen-protector-50.jpg"
-          alt="-50% on screen protectors when you buy a case"
-          fill
-          sizes="(min-width: 1024px) 1024px, 100vw"
-          preload
-          className="object-cover"
-        />
-      </div>
+      {promotion && (
+        // max-w-3xl: on a laptop the banner stops at 768px instead of
+        // filling the whole screen. Ratio stays 2:1 so the text in the
+        // image is never cut off.
+        <div className="relative mb-10 aspect-2/1 max-w-3xl overflow-hidden rounded-2xl">
+          <Image
+            src={promotion.image}
+            alt={promotion.imageAlt}
+            fill
+            sizes="(min-width: 768px) 768px, 100vw"
+            preload
+            className="object-cover"
+          />
+        </div>
+      )}
 
       <section aria-labelledby="glass-heading" className="mb-10">
         <h2
