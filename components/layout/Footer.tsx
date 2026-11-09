@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { navLinks } from "@/lib/navigation";
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="bg-neutral-900 text-white py-4">
       <Container>

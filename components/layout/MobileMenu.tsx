@@ -6,6 +6,8 @@ import { ChevronRight, Menu, Phone, X } from "lucide-react";
 import { navLinks } from "@/lib/navigation";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
+const STORE_PHONE = process.env.NEXT_PUBLIC_STORE_PHONE ?? "";
+
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -74,7 +76,7 @@ export function MobileMenu() {
 
             <div className="mt-auto flex flex-col gap-2">
               <a
-                href="tel:+372XXXXXXXX"
+                href={`tel:${STORE_PHONE}`}
                 className="flex items-center justify-center gap-2 rounded-xl bg-primary-600 py-3 text-body font-semibold text-white hover:bg-primary-700"
               >
                 <Phone className="size-5" aria-hidden="true" />

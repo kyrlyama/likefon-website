@@ -3,12 +3,12 @@ import type { Category } from "@/types/category";
 export const categories: Category[] = [
   {
     slug: "phone-cases",
-    name: "Phone Cases",
+    name: "Phone cases",
     image: "/images/categories/phone-cases.webp",
   },
   {
     slug: "screen-protectors",
-    name: "Screen Protectors",
+    name: "Screen protectors",
     image: "/images/categories/screen-protectors.webp",
   },
   {
@@ -18,12 +18,12 @@ export const categories: Category[] = [
   },
   {
     slug: "car-holders",
-    name: "Car Holders",
+    name: "Car holders",
     image: "/images/categories/car-holders.webp",
   },
   {
     slug: "laptop-bags",
-    name: "Laptop Bags",
+    name: "Laptop bags",
     image: "/images/categories/laptop-bags.webp",
   },
   {
@@ -38,7 +38,7 @@ export const categories: Category[] = [
   },
   {
     slug: "selfie-sticks",
-    name: "Selfie Sticks",
+    name: "Selfie sticks",
     image: "/images/categories/selfie-sticks.webp",
   },
 ];

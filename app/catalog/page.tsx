@@ -7,12 +7,16 @@ export default async function CatalogPage() {
 
   return (
     <Container>
-      <h1 className="text-h1 text-primary-600">Catalog</h1>
-      <div className="grid-cols-4">
+      <h1 className="mt-6 mb-6 text-h1 font-bold text-neutral-900">
+        What we sell
+      </h1>
+      <ul className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {categories.map((category) => (
-          <CategoryCard key={category.slug} category={category} />
+          <li key={category.slug}>
+            <CategoryCard category={category} />
+          </li>
         ))}
-      </div>
+      </ul>
     </Container>
   );
 }
