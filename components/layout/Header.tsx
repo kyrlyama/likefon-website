@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { navLinks } from "@/lib/navigation";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export function Header() {
   return (
@@ -23,7 +24,9 @@ export function Header() {
               </Link>
             ))}
           </nav>
-
+          <div className="hidden lg:block">
+            <LanguageSwitcher />
+          </div>
           <MobileMenu />
         </div>
       </Container>
