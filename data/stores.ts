@@ -15,6 +15,7 @@ export const stores: Store[] = [
     hours,
     phone: STORE_PHONE,
     mapUrl: "https://maps.app.goo.gl/bcefdHh6xo6Jg2Xc9",
+    image: "/images/stores/fama.webp",
   },
   {
     id: "astri",
@@ -23,5 +24,6 @@ export const stores: Store[] = [
     hours,
     phone: STORE_PHONE,
     mapUrl: "https://maps.app.goo.gl/KYBpuaqQyNQ6g8Qw6",
+    image: "/images/stores/astri.webp",
   },
 ];

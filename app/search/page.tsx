@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
-import { CategoryCard } from "@/components/CategoryCard";
+import { CategoryGrid } from "@/components/CategoryGrid";
 import { SearchForm } from "@/components/SearchForm";
 import { CallStoreLink } from "@/components/CallStoreLink";
 import { searchCategories } from "@/lib/categories";
@@ -45,13 +45,7 @@ async function SearchResults({ searchParams }: { searchParams: SearchParams }) {
       </div>
 
       {results.length > 0 ? (
-        <ul className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {results.map((category) => (
-            <li key={category.slug}>
-              <CategoryCard category={category} />
-            </li>
-          ))}
-        </ul>
+        <CategoryGrid categories={results} />
       ) : (
         // Never a dead end: explain and offer the next step.
         <div className="mb-10 rounded-2xl bg-white p-6 text-center">

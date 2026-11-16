@@ -1,22 +1,24 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
-import { CategoryCard } from "@/components/CategoryCard";
+import { CategoryGrid } from "@/components/CategoryGrid";
 import { getCategories } from "@/lib/categories";
 
+export const metadata: Metadata = {
+  title: "Catalog – Likefon Narva",
+};
+
+// The page stays a Server Component: it loads the data on the server.
+// Only CategoryGrid runs in the browser, because it needs useState.
 export default async function CatalogPage() {
   const categories = await getCategories();
 
   return (
     <Container>
-      <h1 className="mt-6 mb-6 text-h1 font-bold text-neutral-900">
-        What we sell
-      </h1>
-      <ul className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {categories.map((category) => (
-          <li key={category.slug}>
-            <CategoryCard category={category} />
-          </li>
-        ))}
-      </ul>
+      <h1 className="mt-6 mb-2 text-h1 font-bold text-neutral-900">Catalog</h1>
+      <p className="mb-6 text-body text-neutral-700">
+        Tap a category to see what we have in the store.
+      </p>
+      <CategoryGrid categories={categories} />
     </Container>
   );
 }

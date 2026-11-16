@@ -23,14 +23,6 @@
   /*Hover/Active*/
   --color-primary-700: #053369; /* Hover */
   --color-primary-50: #ebf3fd; /* Active */
-
-  /* Pastel backgrounds for category cards (decorative, text stays neutral-900) */
-  --color-tint-blue: #e8f2fd;
-  --color-tint-pink: #fde6ef;
-  --color-tint-peach: #fdf1e3;
-  --color-tint-lavender: #ece8f7;
-  --color-tint-green: #e3f5df;
-  --color-tint-mauve: #f3e3f2;
 }
 
 @theme inline {
@@ -48,4 +40,18 @@
 body {
   background: var(--color-neutral-50);
   color: var(--color-neutral-900);
+}
+
+/* Card open/close animation (View Transitions API, see CategoryGrid) */
+::view-transition-group(*) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
