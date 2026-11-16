@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { MessageSquare, Phone } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { ServiceCard } from "@/components/ServiceCard";
+import { ServiceGroupCard } from "@/components/ServiceGroupCard";
 import { ButtonLink } from "@/components/ui/ButtonLink";
-import { getServices } from "@/lib/services";
+import { getServiceGroups } from "@/lib/services";
 import { STORE_PHONE } from "@/lib/contact";
 
 export const metadata: Metadata = {
@@ -11,19 +11,20 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const services = await getServices();
+  const groups = await getServiceGroups();
 
   return (
     <Container>
-      <h1 className="mt-6 mb-6 text-h1 font-bold text-neutral-900">Services</h1>
+      <h1 className="mt-6 mb-2 text-h1 font-bold text-neutral-900">Services</h1>
+      <p className="mb-6 text-body text-neutral-700">
+        Phone setup, data transfer, cleaning and software help.
+      </p>
 
-      <ul className="mb-8 flex max-w-3xl flex-col gap-4">
-        {services.map((service) => (
-          <li key={service.id}>
-            <ServiceCard service={service} />
-          </li>
+      <div className="mb-8 flex max-w-3xl flex-col gap-6">
+        {groups.map((group) => (
+          <ServiceGroupCard key={group.id} group={group} />
         ))}
-      </ul>
+      </div>
 
       <div className="mb-10 grid max-w-3xl grid-cols-2 gap-4">
         <ButtonLink href={`tel:${STORE_PHONE}`}>

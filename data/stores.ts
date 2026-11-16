@@ -1,4 +1,4 @@
-import type { Store } from "@/types/store";
+import type { Store } from "../types/store";
 import { STORE_PHONE } from "@/lib/contact";
 
 // TODO: confirm hours and phone numbers with the client.
@@ -14,7 +14,7 @@ export const stores: Store[] = [
     location: "Narva, 1st floor",
     hours,
     phone: STORE_PHONE,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Fama+Keskus+Narva",
+    mapUrl: "https://maps.app.goo.gl/bcefdHh6xo6Jg2Xc9",
   },
   {
     id: "astri",
@@ -22,7 +22,6 @@ export const stores: Store[] = [
     location: "Narva, 2nd floor",
     hours,
     phone: STORE_PHONE,
-    mapUrl:
-      "https://www.google.com/maps/search/?api=1&query=Astri+Keskus+Narva",
+    mapUrl: "https://maps.app.goo.gl/KYBpuaqQyNQ6g8Qw6",
   },
 ];

@@ -18,10 +18,7 @@ export default async function Home() {
       </p>
 
       {promotion && (
-        // max-w-3xl: on a laptop the banner stops at 768px instead of
-        // filling the whole screen. Ratio stays 2:1 so the text in the
-        // image is never cut off.
-        <div className="relative mb-10 aspect-2/1 max-w-3xl overflow-hidden rounded-2xl">
+        <div className="relative mb-6 aspect-2/1 max-w-3xl overflow-hidden rounded-2xl">
           <Image
             src={promotion.image}
             alt={promotion.imageAlt}
@@ -32,6 +29,10 @@ export default async function Home() {
           />
         </div>
       )}
+
+      <div className="mb-10 max-w-3xl">
+        <SearchForm />
+      </div>
 
       <section aria-labelledby="glass-heading" className="mb-10">
         <h2
@@ -44,13 +45,6 @@ export default async function Home() {
           We install screen protectors in the store.
         </p>
         <CallStoreLink />
-      </section>
-
-      <section aria-labelledby="search-heading" className="mb-10">
-        <h2 id="search-heading" className="mb-4 text-h2 font-bold">
-          Looking for something?
-        </h2>
-        <SearchForm />
       </section>
     </Container>
   );
