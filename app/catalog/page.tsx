@@ -14,7 +14,9 @@ export default async function CatalogPage() {
 
   return (
     <Container>
-      <h1 className="mt-6 mb-2 text-h1 font-bold text-neutral-900">Catalog</h1>
+      <h1 className="mt-6 mb-2 text-h1 font-extrabold tracking-tight text-neutral-900 lg:mt-10 lg:text-[2.75rem]">
+        Catalog
+      </h1>
       <p className="mb-6 text-body text-neutral-700">
         Tap a category to see what we have in the store.
       </p>

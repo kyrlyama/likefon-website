@@ -50,25 +50,27 @@ const tiltClasses =
 const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600";
 
-// Card surface with the Figma states (node 420:553):
-// default = white + neutral-200 border, hover = primary-500 border + light
-// tint, pressed/open = primary-600 border + stronger tint.
-// It is a separate layer, so the photo and text can float above it in 3D.
+// Card surface: liquid glass, the same .glass utility as the service cards
+// (app/globals.css), so the whole site shares one material.
+// States: default = glass, hover = more white + soft blue edge,
+// pressed = light blue tint, open = whiter glass + blue ring.
+// It is a separate layer (not the button itself), so the photo and text can
+// float above it in 3D, and the blur stays on a flat layer.
 function CardSurface({ open }: { open: boolean }) {
   return (
     <>
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 rounded-2xl border-2 transition-colors duration-200 ${
+        className={`glass pointer-events-none absolute inset-0 rounded-3xl transition-colors duration-200 ${
           open
-            ? "border-primary-600 bg-primary-50 shadow-lg"
-            : "border-neutral-200 bg-white group-hover:border-primary-500 group-hover:bg-primary-50 group-active:border-primary-600 group-active:bg-primary-100"
+            ? "bg-white/75 ring-2 ring-primary-500/40"
+            : "group-hover:border-primary-500/40 group-hover:bg-white/75 group-active:bg-primary-100/70"
         }`}
       />
       {/* Light reflection that follows the mouse */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         style={{
           background:
             "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.6), transparent 50%)",
@@ -100,7 +102,7 @@ export function CategoryCard({
           aria-expanded={false}
           aria-controls={panelId}
           style={tiltStyle}
-          className={`flex aspect-15/16 w-full flex-col rounded-2xl p-2 text-left ${tiltClasses} ${focusRing}`}
+          className={`flex aspect-15/16 w-full flex-col rounded-3xl p-2 text-left ${tiltClasses} ${focusRing}`}
         >
           <CardSurface open={false} />
           <span className={`relative block w-full flex-1 ${floatPhoto}`}>
@@ -128,21 +130,29 @@ export function CategoryCard({
         aria-labelledby={`${panelId}-title`}
         {...bigTilt}
         style={tiltStyle}
-        className={`flex h-full flex-col gap-4 rounded-2xl p-4 md:p-6 ${tiltClasses}`}
+        className={`flex h-full flex-col gap-4 rounded-3xl p-5 md:p-6 ${tiltClasses}`}
       >
         <CardSurface open />
 
+        {/* translate-z-12 (48px), not z-10: inside transform-3d the browser
+            ignores z-index and sorts children by their 3D depth. The photo
+            floats to translate-z-10 (40px) on hover, so a button at 32px
+            was BEHIND the photo and the photo caught every click. */}
         <button
           type="button"
           id={`${panelId}-close`}
           onClick={onToggle}
           aria-label={`Close ${category.name}`}
-          className={`absolute top-3 right-3 z-10 flex size-11 items-center justify-center rounded-full border-2 border-neutral-200 bg-white text-neutral-900 transition-transform translate-z-8 hover:border-primary-500 ${focusRing}`}
+          className={`absolute top-3 right-3 flex size-11 items-center justify-center rounded-full border border-neutral-900/10 bg-white/80 text-neutral-900 translate-z-12 hover:bg-white active:bg-primary-100 ${focusRing}`}
         >
           <X className="size-5" aria-hidden="true" />
         </button>
 
-        <div className={`relative h-60 md:h-80 ${floatPhoto}`}>
+        {/* pointer-events-none: the photo is decoration, so clicks go
+            through it to whatever is underneath (like the close button). */}
+        <div
+          className={`pointer-events-none relative h-60 md:h-80 ${floatPhoto}`}
+        >
           <Image
             src={category.image}
             alt=""
