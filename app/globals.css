@@ -38,8 +38,70 @@
 }
 
 body {
-  background: var(--color-neutral-50);
+  background: var(--color-primary-50);
   color: var(--color-neutral-900);
+}
+
+/* Liquid glass background: one fixed layer behind the whole site.
+   A fixed ::before (not background-attachment: fixed) because iOS Safari
+   ignores background-attachment: fixed and the gradient would stretch
+   over the full page height. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 90% 55% at 0% 0%,
+      rgb(0 97 210 / 0.5),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 80% 50% at 100% 15%,
+      rgb(5 70 146 / 0.5),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 100% 45% at 20% 60%,
+      rgb(0 97 210 / 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 90% 50% at 85% 85%,
+      rgb(5 51 105 / 0.3),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-primary-50) 0%,
+      var(--color-primary-100) 50%,
+      var(--color-primary-50) 100%
+    );
+}
+
+/* Frosted glass surface. Use on big blocks only: blur is heavy for cheap phones. */
+@utility glass {
+  background-color: rgb(255 255 255 / 0.55);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / 0.85);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    0 10px 40px rgb(5 51 105 / 0.08);
+
+  /* Old browsers without blur: almost solid white, so text stays readable. */
+  @supports not (backdrop-filter: blur(1px)) {
+    background-color: rgb(255 255 255 / 0.92);
+  }
+
+  /* Users who asked their system for less transparency get solid white. */
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: white;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Card open/close animation (View Transitions API, see CategoryGrid) */

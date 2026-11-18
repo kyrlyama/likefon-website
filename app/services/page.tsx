@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { MessageSquare, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { ServiceGroupCard } from "@/components/ServiceGroupCard";
+import { ServiceGroupList } from "@/components/ServiceGroupList";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { getServiceGroups } from "@/lib/services";
 import { STORE_PHONE } from "@/lib/contact";
@@ -14,28 +14,29 @@ export default async function ServicesPage() {
   const groups = await getServiceGroups();
 
   return (
-    <Container>
-      <h1 className="mt-6 mb-2 text-h1 font-bold text-neutral-900">Services</h1>
-      <p className="mb-6 text-body text-neutral-700">
-        Phone setup, data transfer, cleaning and software help.
-      </p>
+    // pb-32 on phones: space for the floating action bar, so it never
+    // covers the last price.
+    <div className="pb-32 lg:pb-16">
+      <Container>
+        <h1 className="mt-6 mb-6 text-h1 font-extrabold tracking-tight text-neutral-900 lg:mt-10 lg:text-[2.75rem]">
+          Services
+        </h1>
 
-      <div className="mb-8 flex max-w-3xl flex-col gap-6">
-        {groups.map((group) => (
-          <ServiceGroupCard key={group.id} group={group} />
-        ))}
-      </div>
+        <ServiceGroupList groups={groups} />
 
-      <div className="mb-10 grid max-w-3xl grid-cols-2 gap-4">
-        <ButtonLink href={`tel:${STORE_PHONE}`}>
-          <Phone className="size-5" aria-hidden="true" />
-          Call us
-        </ButtonLink>
-        <ButtonLink href={`sms:${STORE_PHONE}`} variant="secondary">
-          <MessageSquare className="size-5" aria-hidden="true" />
-          Text us
-        </ButtonLink>
-      </div>
-    </Container>
+        {/* Phone only: a floating glass bar, always reachable with the thumb.
+            Laptop: hidden, because "Call the store" is in the header. */}
+        <div className="glass fixed inset-x-3 bottom-[max(1rem,env(safe-area-inset-bottom))] z-10 flex gap-2 rounded-full p-2 lg:hidden">
+          <ButtonLink href={`tel:${STORE_PHONE}`} className="flex-1">
+            <Phone className="size-5" aria-hidden="true" />
+            Call the store
+          </ButtonLink>
+          <ButtonLink href="/contacts" variant="glass" className="flex-1">
+            <MapPin className="size-5" aria-hidden="true" />
+            Directions
+          </ButtonLink>
+        </div>
+      </Container>
+    </div>
   );
 }
