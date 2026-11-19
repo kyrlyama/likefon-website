@@ -11,4 +11,8 @@ export type Store = {
   phone: string;
   mapUrl: string;
   image?: string; // optional: photos are added later
+  // CSS object-position: which part of the photo stays visible when it is
+  // cropped to a wide frame. "center 76%" = keep the lower part.
+  // Only needed for photos that are not horizontal.
+  imageFocus?: string;
 };

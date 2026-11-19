@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronRight, Menu, Phone, X } from "lucide-react";
 import { navLinks } from "@/lib/navigation";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { Logo } from "@/components/Logo";
 
 const STORE_PHONE = process.env.NEXT_PUBLIC_STORE_PHONE ?? "";
 
@@ -33,7 +34,7 @@ export function MobileMenu() {
 
           <div className="absolute inset-y-0 right-0 flex w-5/6 max-w-sm flex-col gap-6 overflow-y-auto rounded-l-3xl bg-white p-6">
             <div className="flex items-center justify-between">
-              <span className="text-h2 font-bold text-neutral-900">Like</span>
+              <Logo className="text-h1" />
               <button
                 type="button"
                 aria-label="Close menu"

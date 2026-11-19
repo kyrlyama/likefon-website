@@ -25,5 +25,8 @@ export const stores: Store[] = [
     phone: STORE_PHONE,
     mapUrl: "https://maps.app.goo.gl/KYBpuaqQyNQ6g8Qw6",
     image: "/images/stores/astri.webp",
+    // The photo is vertical (800×1422): keep the kiosk, crop the ceiling.
+    // TODO: ask the client for a horizontal photo, it will be sharper.
+    imageFocus: "center 76%",
   },
 ];

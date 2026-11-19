@@ -12,8 +12,10 @@ export default async function ContactsPage() {
 
   return (
     <Container>
-      <h1 className="mt-6 mb-6 text-h1 font-bold text-neutral-900">Contacts</h1>
-      <ul className="mb-10 grid gap-6 md:grid-cols-2">
+      <h1 className="mt-6 mb-6 text-h1 font-extrabold tracking-tight text-neutral-900 lg:mt-10 lg:text-[2.75rem]">
+        Contacts
+      </h1>
+      <ul className="mb-12 grid gap-6 md:grid-cols-2 lg:gap-8">
         {stores.map((store) => (
           <li key={store.id}>
             <StoreCard store={store} />
